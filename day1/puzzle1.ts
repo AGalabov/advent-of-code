@@ -152,6 +152,6 @@ const input = [
 
 console.log(
   input
-    .map((x, i) => (i < input.length - 2 ? x < input[i + 3] : 0))
+    .map((x, i) => (i < input.length - 2 ? Number(x < input[i + 3]) : 0))
     .reduce((x, y) => x + y)
 );

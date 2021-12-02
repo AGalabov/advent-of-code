@@ -1,4 +1,4 @@
-import { test } from './input.js';
+import { test } from './input';
 
 const reduced = test.reduce(
   (acc, curr) => {
@@ -14,7 +14,7 @@ const reduced = test.reduce(
 
     return {
       ...acc,
-      aim: acc.aim + distance * (direction === 'down' || -1),
+      aim: acc.aim + distance * (Number(direction === 'down') || -1),
     };
   },
   { depth: 0, horizontal: 0, aim: 0 }

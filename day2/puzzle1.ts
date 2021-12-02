@@ -1,5 +1,5 @@
-import { test } from './input.js';
-import _ from 'lodash';
+import { test } from './input';
+import { partition } from 'lodash';
 
 // Solution 1
 const reduced = test.reduce(
@@ -19,13 +19,13 @@ const reduced = test.reduce(
 console.log('Solution1:', reduced.depth * reduced.horizontal);
 
 // Solution 2
-const [forward, depth] = _.partition(
+const [forward, depth] = partition(
   test.map((input) => input.split(' ')),
   ([direction]) => direction === 'forward'
 );
 const horizontal = forward.reduce((a, [_, dist]) => a + Number(dist), 0);
 const vertical = depth.reduce(
-  (a, [dir, dist]) => a + Number(dist) * (dir === 'down' || -1),
+  (a, [dir, dist]) => a + Number(dist) * (Number(dir === 'down') || -1),
   0
 );
 console.log('Solution2:', vertical * horizontal);
