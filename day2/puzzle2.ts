@@ -1,6 +1,6 @@
-import { test } from './input';
+import { input } from './input';
 
-const reduced = test.reduce(
+const reduced = input.reduce(
   (acc, curr) => {
     const [direction, dist] = curr.split(' ');
     const distance = Number(dist);

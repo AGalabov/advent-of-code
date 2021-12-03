@@ -1,4 +1,4 @@
-export const test = [
+export const input = [
   'forward 4',
   'down 8',
   'down 1',
@@ -1001,7 +1001,7 @@ export const test = [
   'forward 5',
 ];
 
-export const test1 = [
+export const sample = [
   'forward 5',
   'down 5',
   'forward 8',

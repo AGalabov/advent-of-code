@@ -1,8 +1,8 @@
-import { test } from './input';
+import { input } from './input';
 import { partition } from 'lodash';
 
 // Solution 1
-const reduced = test.reduce(
+const reduced = input.reduce(
   (acc, curr) => {
     const [direction, dist] = curr.split(' ');
     const distance = Number(dist);
@@ -20,7 +20,7 @@ console.log('Solution1:', reduced.depth * reduced.horizontal);
 
 // Solution 2
 const [forward, depth] = partition(
-  test.map((input) => input.split(' ')),
+  input.map((input) => input.split(' ')),
   ([direction]) => direction === 'forward'
 );
 const horizontal = forward.reduce((a, [_, dist]) => a + Number(dist), 0);

@@ -20,7 +20,6 @@ type BuildTuple<N extends number, T extends Tuple = []> = T extends {
 // type AboveLimit = BuildTuple<47>;
 
 // Arithmetics
-
 type PlusOne<A extends number> = Length<[...BuildTuple<A>, any]>;
 // type Twenty = PlusOne<19>;
 
