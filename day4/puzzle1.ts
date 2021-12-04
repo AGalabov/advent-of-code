@@ -1,5 +1,7 @@
-import _, { times, flatten, findIndex, compact, sum } from 'lodash';
-import { cards, numbers } from './input';
+import _, { times, flatten, findIndex, sum } from 'lodash';
+import { readDay4Input } from './common';
+
+const { numbers, cards } = readDay4Input('./input');
 
 type OccurrencesMap = Record<number, number[]>;
 const occurrencesMap: OccurrencesMap = {};

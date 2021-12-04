@@ -1,5 +1,7 @@
-import { input } from './input';
 import { partition } from 'lodash';
+import { readInput } from '../utils';
+
+const input = readInput('./input');
 
 // Solution 1
 const reduced = input.reduce(

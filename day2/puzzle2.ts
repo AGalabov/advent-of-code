@@ -1,4 +1,6 @@
-import { input } from './input';
+import { readInput } from '../utils';
+
+const input = readInput('./input');
 
 const reduced = input.reduce(
   (acc, curr) => {

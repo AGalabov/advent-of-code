@@ -1,5 +1,7 @@
 import { times } from 'lodash';
-import { input } from './input';
+import { readInput } from '../utils';
+
+const input = readInput('./input');
 
 const inputAsDigits = input.map((s) => s.split('').map(Number));
 
