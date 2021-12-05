@@ -8,3 +8,4 @@ This year I decided to take on the [Advent of Code 2021](https://adventofcode.co
 - [Day 2](./day2)
 - [Day 3](./day3)
 - [Day 4](./day4)
+- [Day 5](./day5)
