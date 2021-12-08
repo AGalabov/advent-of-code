@@ -11,3 +11,4 @@ This year I decided to take on the [Advent of Code 2021](https://adventofcode.co
 - [Day 5](./day5)
 - [Day 6](./day6)
 - [Day 7](./day7)
+- [Day 8](./day8)
