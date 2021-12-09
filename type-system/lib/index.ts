@@ -1,17 +1,9 @@
 export type Tuple = any[];
 export type Zero = [];
 
-export type Rest<T extends Tuple> = T extends [unknown, ...infer Rest]
+export type RestFromArray<T extends Tuple> = T extends [any, ...infer Rest]
   ? Rest
   : Zero;
-// type Test = Rest<[1, 2, 3]>;
-
-export type RestFromArray<T extends Tuple> = ((...args: T) => void) extends (
-  first: any,
-  ...rest: infer Rest
-) => void
-  ? Rest
-  : [];
 // type Rest = RestFromArray<[string, number, { test: boolean }]>;
 // type Rest2 = RestFromArray<[1, 2, 3]>;
 
@@ -44,7 +36,7 @@ export type MinusOne<N extends number, T = BuildTuple<N>> = T extends Zero
   : T extends [unknown, ...infer Rest]
   ? Length<Rest>
   : Length<Zero>;
-export type Thirteen = MinusOne<14>;
+// type Thirteen = MinusOne<14>;
 
 export type Minus<
   A extends number,

@@ -57,7 +57,7 @@ export type Day1Input = [
   308
 ];
 
-type Full = [
+export type Full = [
   174,
   180,
   179,
