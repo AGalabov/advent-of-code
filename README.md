@@ -14,6 +14,7 @@ This year I decided to take on the [Advent of Code 2021](https://adventofcode.co
 - [Day 8](./day8)
 - [Day 9](./day9)
 - [Day 10](./day10)
+- [Day 11](./day11)
 
 # Type system solutions only
 
