@@ -1,4 +1,3 @@
-import { times } from 'lodash';
 import { readInput } from '../utils';
 
 function markIfInRange(matrix: number[][], rowI: number, colI: number) {
@@ -8,9 +7,7 @@ function markIfInRange(matrix: number[][], rowI: number, colI: number) {
     colI >= 0 &&
     colI < matrix[0].length
   ) {
-    // console.log('Will increment', matrix[rowI][colI]);
     matrix[rowI][colI]++;
-    // console.log('Did increment', matrix[rowI][colI]);
   }
 }
 
@@ -20,7 +17,6 @@ function markAdjacent(
   rowI: number,
   colI: number
 ) {
-  // console.log('Called with', rowI, colI, matrix[rowI][colI]);
   markIfInRange(matrix, rowI - 1, colI - 1);
   markIfInRange(matrix, rowI - 1, colI);
   markIfInRange(matrix, rowI - 1, colI + 1);
@@ -30,8 +26,6 @@ function markAdjacent(
   markIfInRange(matrix, rowI + 1, colI - 1);
   markIfInRange(matrix, rowI + 1, colI);
   markIfInRange(matrix, rowI + 1, colI + 1);
-
-  // console.log('After marks:', matrix[rowI][colI]);
 
   matrix.forEach((row, rI) =>
     row.forEach((col, cI) => {
