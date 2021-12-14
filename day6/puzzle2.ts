@@ -1,21 +1,22 @@
+import { NumbersMap } from '../lib/maps';
 import { readInput } from '../utils';
 
-function passDay(initialMap: Map<number, number>) {
-  const nextDay = new Map<number, number>();
+function passDay(initialMap: NumbersMap<number>) {
+  const nextDay = new NumbersMap<number>();
 
-  [...initialMap].forEach(([timer, count]) => {
+  initialMap.forEach((count, timer) => {
     if (timer === 0) {
-      nextDay.set(timer + 8, (nextDay.get(timer + 8) ?? 0) + count);
-      nextDay.set(timer + 6, (nextDay.get(timer + 6) ?? 0) + count);
+      nextDay.add(timer + 8, count);
+      nextDay.add(timer + 6, count);
     } else {
-      nextDay.set(timer - 1, (nextDay.get(timer - 1) ?? 0) + count);
+      nextDay.add(timer - 1, count);
     }
   });
 
   return nextDay;
 }
 
-function countFishes(endMap: Map<number, number>) {
+function countFishes(endMap: NumbersMap<number>) {
   return [...endMap].reduce((acc, [_, count]) => acc + count, 0);
 }
 
@@ -24,20 +25,18 @@ function solve(filename: string, days: number) {
 
   const fishes = input.split(',').map((num) => parseInt(num));
 
-  let dayMap = new Map<number, number>();
+  let dayMap = new NumbersMap<number>();
 
   fishes.forEach((fish) => {
-    dayMap.set(fish, (dayMap.get(fish) ?? 0) + 1);
+    dayMap.add(fish, 1);
   });
 
   for (let i = 0; i < days; i++) {
     dayMap = passDay(dayMap);
   }
 
-  console.log(
-    `There will be ${countFishes(dayMap)} fishes on day ${days}, sir!`
-  );
+  return countFishes(dayMap);
 }
 
-solve('input', 80);
-solve('input', 256);
+console.log('Solution puzzle1:', solve('input', 80));
+console.log('Solution puzzle2:', solve('input', 256));
