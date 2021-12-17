@@ -1,22 +1,23 @@
-export interface NodeVertex {
-  nameOfVertex: string;
+import PriorityQueue from 'ts-priority-queue';
+
+export interface Edge {
+  to: string;
   weight: number;
 }
 
-export class Vertex {
+interface Vertex {
   name: string;
-  nodes: NodeVertex[];
-  weight: number;
+  nodes: Edge[];
+}
 
-  constructor(theName: string, theNodes: NodeVertex[], theWeight: number) {
-    this.name = theName;
-    this.nodes = theNodes;
-    this.weight = theWeight;
-  }
+interface PriorityVertex {
+  priority: number;
+  vertex: Vertex;
 }
 
 export class Dijkstra {
-  vertices: any;
+  private vertices: Record<string, Vertex>;
+
   constructor() {
     this.vertices = {};
   }
@@ -25,79 +26,41 @@ export class Dijkstra {
     this.vertices[vertex.name] = vertex;
   }
 
-  findPointsOfShortestWay(
-    start: string,
-    finish: string,
-    weight: number
-  ): string[] {
-    let nextVertex: string = finish;
-    let arrayWithVertex: string[] = [];
-    let fixedVertices: string[] = [finish];
-    while (nextVertex !== start) {
-      let minWeigth: number = Number.MAX_VALUE;
-      let minVertex: string = '';
-      // console.log('Checking for', minVertex, this.vertices[nextVertex]);
-      for (let i of this.vertices[nextVertex].nodes) {
-        if (
-          i.weight + this.vertices[i.nameOfVertex].weight < minWeigth &&
-          !fixedVertices.includes(i.nameOfVertex)
-        ) {
-          minWeigth = this.vertices[i.nameOfVertex].weight;
-          minVertex = i.nameOfVertex;
-        }
-      }
-      console.log('Will push', minVertex, minWeigth);
-      fixedVertices.push(minVertex);
-      arrayWithVertex.push(minVertex);
-      nextVertex = minVertex;
-    }
-    return arrayWithVertex;
-  }
-
   findShortestWay(start: string, finish: string): number {
-    let nodes: Record<string, number> = {};
-    // let visitedVertex: string[] = [];
+    const nodeCosts: Record<string, number> = {};
 
-    for (let i in this.vertices) {
-      nodes[i] = i === start ? 0 : Number.MAX_VALUE;
-    }
+    const priorityQueue = new PriorityQueue({
+      comparator: (a: PriorityVertex, b: PriorityVertex) =>
+        a.priority - b.priority,
+    });
 
-    while (Object.keys(nodes).length > 0) {
-      let sortedVisitedByWeight: string[] = Object.keys(nodes).sort(
-        (a, b) => nodes[a] - nodes[b]
-      );
-      const unvisited = sortedVisitedByWeight[0];
+    priorityQueue.queue({ vertex: this.vertices[start], priority: 0 });
 
-      if (unvisited === finish) {
-        return nodes[unvisited];
+    Object.keys(this.vertices).forEach((key) => {
+      nodeCosts[key] = key === start ? 0 : Number.MAX_VALUE;
+    });
+
+    while (priorityQueue.length > 0) {
+      const { vertex: currentVertex } = priorityQueue.dequeue();
+
+      if (currentVertex.name === finish) {
+        return nodeCosts[finish];
       }
 
-      // console.log('Unvisited', unvisited, nodes[unvisited]);
-      let currentVertex: Vertex = this.vertices[unvisited];
+      currentVertex.nodes.forEach((adjacent) => {
+        const calculatedWeight =
+          nodeCosts[currentVertex.name] + adjacent.weight;
 
-      for (let j of currentVertex.nodes) {
-        const calculateWeight: number = nodes[unvisited] + j.weight;
-        // console.log({ calculateWeight, currentVertex, j });
-        if (calculateWeight < nodes[j.nameOfVertex]) {
-          nodes[j.nameOfVertex] = calculateWeight;
+        if (calculatedWeight < nodeCosts[adjacent.to]) {
+          nodeCosts[adjacent.to] = calculatedWeight;
+          priorityQueue.queue({
+            vertex: this.vertices[adjacent.to],
+            priority: calculatedWeight,
+          });
         }
-      }
-
-      delete nodes[unvisited];
+      });
     }
 
-    // console.log({ nodes });
-
-    return nodes[finish];
-
-    // console.log({ finish, vertex: this.vertices[finish] });
-    // const finishWeight: number = this.vertices[finish].weight;
-    // let arrayWithVertex: string[] = this.findPointsOfShortestWay(
-    //   start,
-    //   finish,
-    //   finishWeight
-    // ).reverse();
-    // arrayWithVertex.push(finish, finishWeight.toString());
-    // return arrayWithVertex;
+    return -1;
   }
 }
