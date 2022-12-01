@@ -1,6 +1,6 @@
 # Purpose
 
-This year I decided to take on the [Advent of Code 2021](https://adventofcode.com/) challenge. Throughout the event I intend to use multiple languages, but primarily Typescript and C++, to go through the journey of obtaining all 50 start and saving Christmas.
+In 2021 I decided to take on the [Advent of Code 2021](https://adventofcode.com/2021) challenge. Since this was my first year, I used primarily my strongest language - Typescript.
 
 # Solutions
 
