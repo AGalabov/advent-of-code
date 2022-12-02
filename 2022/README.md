@@ -5,3 +5,4 @@ This year I decided take advantage of [Advent of Code 2022](https://adventofcode
 # Solutions
 
 - [Day 1](./day1)
+- [Day 2](./day2)
