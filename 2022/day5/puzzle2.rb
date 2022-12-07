@@ -26,13 +26,15 @@ class SupplyStacks
 
     stacks = stacks_input.split(" ")
 
-    @stacks = stacks.map.with_index{ |_, index| setup_lines.map{ |line| line[4*index + 1] }.filter{ |val| val != " " } }
+    @stacks = stacks.map.with_index do|_, index|
+      setup_lines
+        .map{ |line| line[4*index + 1] }
+        .filter{ |val| val != " " }
+    end
   end
 
   def follow_instructions(instructions)
-    format = /([\d]*)/
-
-    parsed = instructions.split("\n").map { |instr| instr.scan(/\d+/).map(&:to_i) }
+    parsed = instructions.split("\n").map { |instruction| instruction.scan(/\d+/).map(&:to_i) }
 
     parsed.each do |line|
       count, from, to = line
