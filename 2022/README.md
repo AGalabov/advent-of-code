@@ -13,3 +13,4 @@ This year I decided take advantage of [Advent of Code 2022](https://adventofcode
 - [Day 7](./day7)
 - [Day 8](./day8)
 - [Day 9](./day9)
+- [Day 10](./day10)
