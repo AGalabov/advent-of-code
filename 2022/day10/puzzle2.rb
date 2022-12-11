@@ -3,7 +3,7 @@ def mark_pixel(result_map, cycle_num, value)
   row = cycle_num / 40
   col = cycle_num % 40
 
-  result_map[row][col] = (col - value).abs <= 1 ? "#" : "."
+  result_map[row][col] = (col - value).abs <= 1 ? "\u2588" : " "
 end
 
 def solve(input)
